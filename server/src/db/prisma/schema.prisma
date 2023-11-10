@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+model User {
+  id        String    @id @default(dbgenerated("public.uuid_generate_v4()")) @db.Uuid
+  email     String    @map("email") @db.VarChar(255)
+  name      String    @map("name") @db.VarChar(255)
+  password  String    @map("password") @db.VarChar()
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime  @default(now()) @map("updated_at") @db.Timestamptz(6)
+
+  // Relations
+  token UserToken?
+  comments Comment[]
+ 
+  @@map("users")
+}
+
+model UserToken {
+  id            String      @id @default(dbgenerated("public.uuid_generate_v4()")) @db.Uuid
+  userId        String      @map("user_id") @db.Uuid
+  accessToken   String      @map("access_token") @db.VarChar()
+  createdAt     DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime    @default(now()) @map("updated_at") @db.Timestamptz(6)
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+ 
+  @@unique([userId], map: "user_token")
+  @@map("user_tokens")
+}
+
+model Photo {
+  id            String      @id @default(dbgenerated("public.uuid_generate_v4()")) @db.Uuid
+  imgUrl        String      @map("img_url") @db.VarChar()
+  createdAt     DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime    @default(now()) @map("updated_at") @db.Timestamptz(6)
+
+  // Relations
+  comments Comment[]
+ 
+  @@map("photos")
+}
+
+model Comment {
+  id            String      @id @default(dbgenerated("public.uuid_generate_v4()")) @db.Uuid
+  text          String      @map("text") @db.VarChar()
+  photoId       String      @map("photo_id") @db.Uuid
+  createdById       String      @map("created_by_id") @db.Uuid
+  createdAt     DateTime    @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt     DateTime    @default(now()) @map("updated_at") @db.Timestamptz(6)
+
+  // Relations
+  photo Photo @relation(fields: [photoId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  author User @relation(fields: [createdById], references: [id], onDelete: NoAction, onUpdate: NoAction)
+ 
+  @@map("comments")
+}

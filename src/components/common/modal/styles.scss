@@ -1,0 +1,19 @@
+@import '../rootStyles/mixins';
+
+.modal-overlay {
+  @include modalOverlay;
+
+  .modal-wrapper {
+    @include columnFlexbox;
+    gap: 10px;
+    .modal-header-wrapper {
+      @include rowFlexbox;
+      justify-content: space-between;
+
+      .close-button {
+        @include button;
+        padding: 0px;
+      }
+    }
+  }
+}

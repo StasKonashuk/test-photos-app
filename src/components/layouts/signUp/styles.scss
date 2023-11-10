@@ -1,0 +1,36 @@
+@import '../../common/rootStyles/variables';
+@import '../../common/rootStyles/mixins';
+
+$border-color: #ddd;
+$border-radius: 4px;
+$primary-color: #007bff;
+$transition: all 0.3s ease-out;
+
+.sign-up-wrapper {
+  @include columnFlexbox;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+
+  .sign-up-form {
+    @include columnFlexbox;
+    gap: 15px;
+    width: 600px;
+    padding: 20px;
+    border: 1px solid $light-grey-1;
+    border-radius: $border-radius;
+    background: $white;
+    .submit-button {
+      width: 100%;
+      padding: 10px 20px;
+    }
+
+    .create-account-wrapper {
+      @include rowFlexbox;
+      gap: 5px;
+      .sign-in-link {
+        color: $blue-1;
+      }
+    }
+  }
+}

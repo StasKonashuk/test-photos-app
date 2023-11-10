@@ -1,0 +1,19 @@
+@import '../rootStyles/mixins';
+@import '../rootStyles/variables';
+
+.button {
+  @include button;
+  padding: 15px;
+  background: $blue-1;
+  color: $white;
+}
+
+.button:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.button:hover {
+  opacity: 0.7;
+  transition: $transition;
+}

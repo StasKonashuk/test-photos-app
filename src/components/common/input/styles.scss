@@ -1,0 +1,28 @@
+@import '../rootStyles/mixins';
+@import '../rootStyles/variables';
+
+.input-wrapper {
+  @include columnFlexbox;
+  gap: 8px;
+
+  .input-label {
+    font-weight: 900;
+  }
+
+  .input {
+    @include input;
+  }
+
+  .input:focus {
+    border: $input-focus-border;
+    transition: $transition;
+  }
+
+  .error-wrapper {
+    @include columnFlexbox;
+  }
+
+  .error-text {
+    color: $error;
+  }
+}

@@ -1,0 +1,57 @@
+@import '../../../common/rootStyles/variables';
+@import '../../../common/rootStyles/mixins';
+
+.modal-overlay {
+  @include modalOverlay;
+
+  .modal-content {
+    @include columnFlexbox;
+    gap: 30px;
+
+    .photo-wrapper {
+      width: 450px;
+      height: 450px;
+
+      img {
+        width: 450px;
+        height: 450px;
+        border-radius: $border-radius;
+      }
+    }
+
+    .comments-header {
+      margin-bottom: 5px;
+    }
+
+    .comments-wrapper {
+      @include columnFlexbox;
+      align-items: flex-start;
+      padding: 10px;
+      gap: 10px;
+      border: 1px solid $light-grey-1;
+      border-radius: $border-radius;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    .no-results {
+      @include noResultsText;
+    }
+
+    .input-wrapper {
+      width: 90%;
+    }
+
+    .post-comment-form {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+
+      .post-comment-button {
+        width: 150px;
+      }
+    }
+  }
+}

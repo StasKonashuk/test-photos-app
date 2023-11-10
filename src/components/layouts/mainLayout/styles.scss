@@ -1,0 +1,9 @@
+@import '../../common/rootStyles/variables';
+@import '../../common/rootStyles/mixins';
+
+.main-layout {
+  @include columnFlexbox;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
